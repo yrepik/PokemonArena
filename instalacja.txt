@@ -1,0 +1,13 @@
+1. NIGDY NIE OTWIERAJ PLIKÓW PHP W NOTATNIKU!! Użyj do tego programu Notepad++ lub EditPlus3
+
+2. Wgraj zawartość pliku ustawienia/baza.txt do swojej bazy danych
+
+3. Edytuj ustawienia połączenia z bazą danych w pliku ustawienia/ustawienia.php
+
+4. Ustaw uprawnienia dostępu do katalogu 'avatar' na 700
+
+5. Ustaw uprawnienia dostępu do katalogu 'admin' na 000
+
+6. Włącz grę i zarejestruj PIERWSZEGO gracza o loginie 'admin' 
+
+7. przenieś plik cron/cron-00.php do katalogu, z którego będziesz uruchamiał polecenia CRON na serwerze i zabezpiecz dostęp

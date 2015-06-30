@@ -1,0 +1,129 @@
+
+CREATE TABLE IF NOT EXISTS `pokemon_gracze` (
+  `gracz` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(24) NOT NULL,
+  `haslo` varchar(40) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `avatar` tinyint(4) NOT NULL DEFAULT '0',
+  `opis` varchar(100) NOT NULL,
+  `akcje` int(11) NOT NULL DEFAULT '100',
+  `akcje_max` int(11) NOT NULL DEFAULT '100',
+  `vip` int(11) NOT NULL DEFAULT '0',
+  `ostatnia_akcja` int(11) NOT NULL DEFAULT '0',
+  `kasa` int(11) NOT NULL DEFAULT '1000',
+  `zbanowany` tinyint(4) NOT NULL DEFAULT '0',
+  `pracuje` int(11) NOT NULL DEFAULT '0',
+  `pracuje_godzin` tinyint(4) NOT NULL DEFAULT '0',
+  `aktywny_pokemon` int(11) NOT NULL DEFAULT '0',
+  `punkty` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`gracz`),
+  KEY `login` (`login`,`email`),
+  KEY `ostatnia_akcja` (`ostatnia_akcja`),
+  KEY `zbanowany` (`zbanowany`),
+  KEY `punkty` (`punkty`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Zrzut danych tabeli `pokemon_gracze`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla  `pokemon_kody`
+--
+
+CREATE TABLE IF NOT EXISTS `pokemon_kody` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kod` varchar(40) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `gracz_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `kod` (`kod`),
+  KEY `status` (`status`,`gracz_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Zrzut danych tabeli `pokemon_kody`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla  `pokemon_poczta`
+--
+
+CREATE TABLE IF NOT EXISTS `pokemon_poczta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `od` int(11) NOT NULL,
+  `do` int(11) NOT NULL,
+  `tytul` text NOT NULL,
+  `tresc` text NOT NULL,
+  `data` datetime NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  `typ` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `od` (`od`),
+  KEY `status` (`status`),
+  KEY `do` (`do`),
+  KEY `typ` (`typ`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Zrzut danych tabeli `pokemon_poczta`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla  `pokemon_pokemony`
+--
+
+CREATE TABLE IF NOT EXISTS `pokemon_pokemony` (
+  `pokemon` int(11) NOT NULL AUTO_INCREMENT,
+  `nazwa` text NOT NULL,
+  `cena` int(11) NOT NULL,
+  `atak` int(11) NOT NULL,
+  `obrona` int(11) NOT NULL,
+  `obrazenia_min` int(11) NOT NULL,
+  `obrazenia_max` int(11) NOT NULL,
+  `zycie` int(11) NOT NULL,
+  PRIMARY KEY (`pokemon`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Zrzut danych tabeli `pokemon_pokemony`
+--
+
+INSERT INTO `pokemon_pokemony` (`pokemon`, `nazwa`, `cena`, `atak`, `obrona`, `obrazenia_min`, `obrazenia_max`, `zycie`) VALUES
+(1, 'Pikachu', 600, 5, 5, 3, 5, 25),
+(2, 'Charmander', 500, 5, 2, 2, 7, 20),
+(3, 'Bulbasaur', 750, 3, 7, 2, 3, 40),
+(4, 'Jiglypuff', 1000, 1, 1, 1, 10, 20),
+(5, 'Meowth', 600, 3, 3, 3, 4, 20),
+(6, 'Cubone', 1100, 8, 5, 5, 8, 15),
+(7, 'Psyduck', 2000, 3, 3, 1, 20, 50);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla  `pokemon_pokemony_gracze`
+--
+
+CREATE TABLE IF NOT EXISTS `pokemon_pokemony_gracze` (
+  `gracz_id` int(11) NOT NULL,
+  `pokemon_id` int(11) NOT NULL,
+  `nazwa` text NOT NULL,
+  `wartosc` int(11) NOT NULL,
+  `atak` int(11) NOT NULL,
+  `obrona` int(11) NOT NULL,
+  `obrazenia_min` int(11) NOT NULL,
+  `obrazenia_max` int(11) NOT NULL,
+  `zycie` int(11) NOT NULL,
+  `zycie_max` int(11) NOT NULL,
+  `ostatnia_walka` int(11) NOT NULL DEFAULT '0',
+  KEY `gracz_id` (`gracz_id`,`pokemon_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
